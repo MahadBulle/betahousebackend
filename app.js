@@ -20,9 +20,9 @@ const app = express()
 app.use(express.json())
 // app.use(cors({origin:['http://localhost:5173/']}));
 
-// const Port = process.env.PORT
-  app.listen(4033);
-  // console.log("welocme",Port);
+const Port = process.env.PORT
+  app.listen(Port);
+  console.log("welocme",Port);
 
 
   
