@@ -1,14 +1,36 @@
 const { GalleryModel, galleryvalidation } = require('../../Models/PagesModels/GalleryModel')
+// // get start
+// const Getgallery = async (req, res) => {
+//   const hellGallery = await GalleryModel.find()
+//   res.status(200).send(hellGallery)
+// }
+// // get ended
+// // get ById start
+// const GetgalleryById = async (req, res) => {
+//   const hellGetgalleryById = await GalleryModel.findById(req.params.id)
+//   res.status(200).send(hellGetgalleryById)
+// }
+// // get ById ended
 // get start
 const Getgallery = async (req, res) => {
-  const hellGallery = await GalleryModel.find()
-  res.status(200).send(hellGallery)
+  try {
+    const hellGallery = await GalleryModel.find()
+    res.status(200).send(hellGallery)
+  } catch (error) {
+    res.send({ errors: error })
+  }
+
 }
 // get ended
 // get ById start
 const GetgalleryById = async (req, res) => {
-  const hellGetgalleryById = await GalleryModel.findById(req.params.id)
-  res.status(200).send(hellGetgalleryById)
+  try {
+    const hellGetgalleryById = await GalleryModel.findById(req.params.id)
+    res.status(200).send(hellGetgalleryById)
+  } catch (error) {
+    res.send({ errors: error })
+  }
+
 }
 // get ById ended
 // post start

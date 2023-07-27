@@ -16,7 +16,7 @@ const gallerySchema = new mongoose.Schema({
   }
 })
 
-const GalleryModel = mongoose.model('gallery', gallerySchema)
+const GalleryModel = mongoose.model('Gallery', gallerySchema)
 
 // va;iadtion
 function galleryvalidation (galleryObj) {
