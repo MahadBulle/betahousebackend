@@ -1,4 +1,4 @@
-const { AboutModel, aboutValidation } = require('../../Models/PagesModels/AboutModel')
+const { AboutModel, aboutValidation } = require('../../Models/PagesModels/aboutModel')
 // get start
 const GetAbout = async (req, res) => {
   const hellGetAbout = await AboutModel.find()

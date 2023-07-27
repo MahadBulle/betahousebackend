@@ -1,4 +1,4 @@
-const { ContactModel, contactValidation } = require('../../Models/PagesModels/ContactModel')
+const { ContactModel, contactValidation } = require('../../Models/PagesModels/contactModel')
 // get start
 const GetContact = async (req, res) => {
   // res.send("hello iam contact")
