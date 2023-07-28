@@ -18,7 +18,7 @@ const servicesRoutes = require('./routes/PagesRoutes/ourServicesRoute')
 const app = express()
 
 app.use(express.json())
-app.use(cors({origin:['http://localhost:5173/']}));
+app.use(cors({origin:'http://localhost:5173/'}));
 
 // const Port = process.env.PORT
 //   app.listen(Port);
