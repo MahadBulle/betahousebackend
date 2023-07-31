@@ -10,4 +10,6 @@ router.post('/', ourClientController.PostClient)
 
 router.put('/:id', ourClientController.PutClient)
 
+router.delete('/:id', ourClientController. DeleteClient)
+
 module.exports = router

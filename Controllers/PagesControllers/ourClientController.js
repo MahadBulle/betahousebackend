@@ -43,9 +43,16 @@ const PutClient = async (req, res) => {
   }
 }
 // put/update ended
+// Delete houseImages start
+const DeleteClient = async (req, res) => {
+  const deletingById = await ClientModel.findByIdAndRemove(req.params.id)
+  res.send({ status: 'success', message: `this Client ${deletingById} is Deleted successfully` })
+}
+// Delete houseImages ended
 module.exports = {
   GetClient,
   GetClientById,
   PostClient,
-  PutClient
+  PutClient,
+  DeleteClient
 }
