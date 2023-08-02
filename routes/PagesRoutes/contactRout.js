@@ -4,7 +4,7 @@ const router = express.Router()
 
 // const contactController = require('../../Controllers/PagesControllers/contactController')
 // const contactController = require('../../Controllers/PagesControllers/contactController')
-const {GetContact,GetContactById,PostContact,PutContact,DeleteContacts} = require('../../Controllers/PagesControllers/contactController')
+const {GetContact,GetContactById,PostContact,PutContact,DeleteContact} = require('../../Controllers/PagesControllers/contactController')
 // router.get('/',(req,res) => {
 
 //     res.send("waa uu shaqeenaa hada")
@@ -17,7 +17,7 @@ router.post('/', PostContact)
 
 router.put('/:id',PutContact)
 
-router.delete('/:id',DeleteContacts)
+router.delete('/:id',DeleteContact)
 
 
 module.exports = router

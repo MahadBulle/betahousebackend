@@ -53,7 +53,7 @@ const PutContact = async (req, res) => {
 }
 // put/update ended
 // Delete Contacts start
-const DeleteContacts = async (req, res) => {
+const DeleteContact = async (req, res) => {
   const deletingById = await ContactModel.findByIdAndRemove(req.params.id)
   res.send({ status: 'success', message: `this Contact ${deletingById} is Deleted successfully` })
 }
@@ -63,5 +63,5 @@ module.exports = {
   GetContactById,
   PostContact,
   PutContact,
-  DeleteContacts
+  DeleteContact
 }
