@@ -43,12 +43,12 @@ const PutService = async (req, res) => {
   }
 }
 // put/update ended
-// Delete houseImages start
+// Delete Services start
 const DeleteService = async (req, res) => {
   const deletingById = await ServiceModel.findByIdAndRemove(req.params.id)
   res.send({ status: 'success', message: `this Service ${deletingById} is Deleted successfully` })
 }
-// Delete houseImages ended
+// Delete Services ended
 
 module.exports = {
   GetService,
