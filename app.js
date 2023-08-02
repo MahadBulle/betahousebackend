@@ -18,7 +18,7 @@ const servicesRoutes = require('./routes/PagesRoutes/ourServicesRoute')
 const app = express()
 
 app.use(express.json())
-app.use(cors({origin:'http://localhost:5173',origin:'https://beta-houses.vercel.app'}));
+app.use(cors({origin:'http://localhost:5173'}));
 
 // const Port = process.env.PORT
 //   app.listen(Port);
