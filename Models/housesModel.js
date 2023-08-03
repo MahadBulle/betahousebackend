@@ -55,7 +55,7 @@ const housesSchema = new mongoose.Schema({
   Description: {
     type: String,
     required: true
-  },
+  }
   // userId: {
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: 'Users',

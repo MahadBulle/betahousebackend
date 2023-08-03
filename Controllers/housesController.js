@@ -85,7 +85,7 @@ function HousesValidation (HousesObj) {
     Deposit: joi.string().required(),
     Status: joi.string().required(),
     Description: joi.string().required()
-    // userId: joi.string().required()
+    
 
   })
   return HousesVal.validate(HousesObj)

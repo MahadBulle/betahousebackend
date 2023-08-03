@@ -8,7 +8,7 @@ const himagesSchema = new mongoose.Schema({
   images: {
     type: String,
     required: true
-  },
+  }
   // userId: {
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: 'Users',

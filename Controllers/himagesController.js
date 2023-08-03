@@ -1,22 +1,34 @@
 const HimagesModel = require('../Models/himagesModel')
 const joi = require('joi')
+// // get houseImages start
+// const GetHimages = async (req, res) => {
+//   const hellHimages = await HimagesModel.find().populate({
+//     path: 'userId',
+//     model: 'Users',
+//     select: 'username'
+//   })
+//   res.send(hellHimages)
+// }
+// // get houseImages ended
 // get houseImages start
 const GetHimages = async (req, res) => {
-  const hellHimages = await HimagesModel.find().populate({
-    path: 'userId',
-    model: 'Users',
-    select: 'username'
-  })
+  const hellHimages = await HimagesModel.find()
   res.send(hellHimages)
 }
 // get houseImages ended
+// // get houseImagesById start
+// const GetHimagesById = async (req, res) => {
+//   const hellHimages = await HimagesModel.findById(req.params.id).populate({
+//     path: 'userId',
+//     model: 'Users',
+//     select: 'username'
+//   })
+//   res.send(hellHimages)
+// }
+// // get houseImagesById ended
 // get houseImagesById start
 const GetHimagesById = async (req, res) => {
-  const hellHimages = await HimagesModel.findById(req.params.id).populate({
-    path: 'userId',
-    model: 'Users',
-    select: 'username'
-  })
+  const hellHimages = await HimagesModel.findById(req.params.id)
   res.send(hellHimages)
 }
 // get houseImagesById ended
@@ -63,8 +75,8 @@ const DeleteHimages = async (req, res) => {
 function himagesValdation (himagesObj) {
   const himagesVal = joi.object({
     houseId: joi.string().required(),
-    images: joi.string().required(),
-    userId: joi.string().required()
+    images: joi.string().required()
+    // userId: joi.string().required()
 
   })
   return himagesVal.validate(himagesObj)
