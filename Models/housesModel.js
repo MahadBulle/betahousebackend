@@ -56,11 +56,11 @@ const housesSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Users',
-    required: true
-  }
+  // userId: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Users',
+  //   required: true
+  // }
 
 }, { timestamps: true })
 
