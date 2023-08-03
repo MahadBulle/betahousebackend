@@ -1,22 +1,34 @@
 const HousesModel = require('../Models/housesModel')
 const joi = require('joi')
+// // houses get starts
+// const GetHouses = async (req, res) => {
+//   const hellguriyo = await HousesModel.find().populate({
+//     path: 'userId',
+//     model: 'Users',
+//     select: 'username'
+//   })
+//   res.send(hellguriyo)
+// }
+// // houses get end
 // houses get starts
 const GetHouses = async (req, res) => {
-  const hellguriyo = await HousesModel.find().populate({
-    path: 'userId',
-    model: 'Users',
-    select: 'username'
-  })
+  const hellguriyo = await HousesModel.find()
   res.send(hellguriyo)
 }
 // houses get end
+// // houses getById starts
+// const GetHouseById = async (req, res) => {
+//   const hellguri = await HousesModel.findById(req.params.id).populate({
+//     path: 'userId',
+//     model: 'Users',
+//     select: 'username'
+//   })
+//   res.send(hellguri)
+// }
+// // houses getById ends
 // houses getById starts
 const GetHouseById = async (req, res) => {
-  const hellguri = await HousesModel.findById(req.params.id).populate({
-    path: 'userId',
-    model: 'Users',
-    select: 'username'
-  })
+  const hellguri = await HousesModel.findById(req.params.id)
   res.send(hellguri)
 }
 // houses getById ends
@@ -72,8 +84,8 @@ function HousesValidation (HousesObj) {
     Image: joi.string().required(),
     Deposit: joi.string().required(),
     Status: joi.string().required(),
-    Description: joi.string().required(),
-    userId: joi.string().required()
+    Description: joi.string().required()
+    // userId: joi.string().required()
 
   })
   return HousesVal.validate(HousesObj)
