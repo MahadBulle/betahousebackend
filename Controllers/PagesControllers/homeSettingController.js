@@ -3,7 +3,7 @@ const joi = require('joi')
 // get start
 const homeSettingGet = async (req, res) => {
   try {
-    const data = await HomeSettingModel.find().sort({ _id: -1 }).limit(1)
+    const data = await HomeSettingModel.find().sort({ _id:-1 }).limit(1)
     res.status(200).send(data)
   } catch (error) {
     res.status(404).send(error.message);
