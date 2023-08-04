@@ -76,6 +76,12 @@ const PutHomeSettting = async (req, res) => {
   }
 }
 // put/update ended
+// Delete homeSetting start
+const deleteHomSet = async (req, res) => {
+  const deletingById = await HomeSettingModel.findByIdAndRemove(req.params.id)
+  res.send({ status: 'success', message: `this Home Setting ${deletingById} is Deleted successfully` })
+}
+// Delete homeSetting ended
 // validation starts
 function homeSettingValidation (HomeSetttingObj) {
   const HomeSetttingVal = joi.object({
@@ -94,7 +100,7 @@ function homeSettingValidation (HomeSetttingObj) {
     HeroDescription: joi.string().required(),
     heroImage: joi.string().required(),
     footerText: joi.string().required(),
-    userId: joi.string().required()
+    // userId: joi.string().required()
   })
   return HomeSetttingVal.validate(HomeSetttingObj)
 }
@@ -103,5 +109,6 @@ module.exports = {
   homeSettingGet,
   homeSettingGetById,
   homeSettingPosting,
-  PutHomeSettting
+  PutHomeSettting,
+  deleteHomSet
 }

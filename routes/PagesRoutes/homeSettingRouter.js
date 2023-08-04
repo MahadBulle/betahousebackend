@@ -10,4 +10,7 @@ router.post('/', homeSettingController.homeSettingPosting)
 
 router.put('/:id', homeSettingController.PutHomeSettting)
 
+router.delete('/:id', homeSettingController.deleteHomSet)
+
+
 module.exports = router
