@@ -2,7 +2,8 @@ const HomeSettingModel = require('../../Models/PagesModels/homeSettingModel')
 const joi = require('joi')
 // get start
 const homeSettingGet = async (req, res) => {
-  const hellhomeSetting = await HomeSettingModel.find()
+  const hellhomeSetting = await HomeSettingModel.find().find().sort({ _id: -1 }).limit(1);
+  
   res.status(200).send(hellhomeSetting)
 }
 // get ended
@@ -12,23 +13,54 @@ const homeSettingGetById = async (req, res) => {
   res.status(200).send(hellhomeSettingGetById)
 }
 // get ById ended
-// post start
+
+
 const homeSettingPosting = async (req, res, next) => {
   try {
-    const { error } = homeSettingValidation(req.body)
-    if (error) return res.status(400).send(error.message)
-    const homeSettingPosting = new HomeSettingModel(req.body)
-    await homeSettingPosting.save()
-    res.status(201).send({
-      status: true,
-      homeSettingPosting,
-      message: 'succefully inserted company information'
-    })
+    const { error } = homeSettingValidation(req.body);
+    if (error) return res.status(400).send(error.message);
+    const homesettGet = await HomeSettingModel.find()
+      .sort({ _id: -1 })
+      .limit(1);
+    if (homesettGet) {
+      const updateData = await HomeSettingModel.findByIdAndUpdate(
+        homesettGet[0]._id,
+        req.body,
+        { new: true }
+      );
+      res.status(200).send(updateData);
+    } else {
+      const postdata = await HomeSettingModel(req.body);
+      await postdata.save();
+      res.status(201).send({
+        status: true,
+        postdata,
+        message: 'succefully posted company info',
+      });
+    }
   } catch (error) {
-    res.status(400).send(error.message)
+    res.status(400).send(error.message);
   }
-}
-// post ended
+};
+
+
+// // post start
+// const homeSettingPosting = async (req, res, next) => {
+//   try {
+//     const { error } = homeSettingValidation(req.body)
+//     if (error) return res.status(400).send(error.message)
+//     const homeSettingPosting = new HomeSettingModel(req.body)
+//     await homeSettingPosting.save()
+//     res.status(201).send({
+//       status: true,
+//       homeSettingPosting,
+//       message: 'succefully inserted company information'
+//     })
+//   } catch (error) {
+//     res.status(400).send(error.message)
+//   }
+// }
+// // post ended
 // put/update houseImages start
 const PutHomeSettting = async (req, res) => {
   try {
