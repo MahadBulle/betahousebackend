@@ -2,10 +2,18 @@ const HomeSettingModel = require('../../Models/PagesModels/homeSettingModel')
 const joi = require('joi')
 // get start
 const homeSettingGet = async (req, res) => {
-  const hellhomeSetting = await HomeSettingModel.find().sort({ _id: -1 }).limit(1)
-  
-  res.status(200).send(hellhomeSetting)
+  try {
+    const data = await HomeSettingModel.find().sort({ _id: -1 }).limit(1)
+    res.status(200).send(data)
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
 }
+// const homeSettingGet = async (req, res) => {
+//   const hellhomeSetting = await HomeSettingModel.find().sort({ _id: -1 }).limit(1)
+  
+//   res.status(200).send(hellhomeSetting)
+// }
 // get ended
 // get ById start
 const homeSettingGetById = async (req, res) => {
@@ -15,33 +23,59 @@ const homeSettingGetById = async (req, res) => {
 // get ById ended
 
 
+// const homeSettingPosting = async (req, res, next) => {
+//   try {
+//     const { error } = homeSettingValidation(req.body);
+//     if (error) return res.status(400).send(error.message);
+//     const homesettGet = await HomeSettingModel.find()
+//       .sort({ _id: -1 })
+//       .limit(1);
+//     if (homesettGet) {
+//       const updateData = await HomeSettingModel.findByIdAndUpdate(
+//         homesettGet[0]._id,
+//         req.body,
+//         { new: true }
+//       );
+//       res.status(200).send(updateData);
+//     } else {
+//       const postdata = await HomeSettingModel(req.body);
+//       await postdata.save();
+//       res.status(201).send({
+//         status: true,
+//         postdata,
+//         message: 'succefully posted company info',
+//       });
+//     }
+//   } catch (error) {
+//     res.status(400).send(error.message);
+//   }
+// };
+
 const homeSettingPosting = async (req, res, next) => {
   try {
-    const { error } = homeSettingValidation(req.body);
-    if (error) return res.status(400).send(error.message);
-    const homesettGet = await HomeSettingModel.find()
-      .sort({ _id: -1 })
-      .limit(1);
-    if (homesettGet) {
-      const updateData = await HomeSettingModel.findByIdAndUpdate(
-        homesettGet[0]._id,
-        req.body,
-        { new: true }
-      );
-      res.status(200).send(updateData);
+    const { error } = homeSettingValidation(req.body)
+    if (error) return res.status(400).send(error.message)
+
+    const getData = await HomeSettingModel.find().sort({ _id: -1 }).limit(1)
+    if (!getData) {
+      const postHome = await HomeSettingModel(req.body);
+      await postHome.save();
+      res.status(201).send({ status: true, message: 'successfully saved' });
+
+
     } else {
-      const postdata = await HomeSettingModel(req.body);
-      await postdata.save();
-      res.status(201).send({
-        status: true,
-        postdata,
-        message: 'succefully posted company info',
-      });
+
+      await HomeSettingModel.findByIdAndUpdate(getData[0]._id, req.body, { new: true });
+      res.status(201).send({ status: true, message: 'successfully updated' });
+
     }
-  } catch (error) {
-    res.status(400).send(error.message);
+
+
+  } 
+  catch (error) {
+    res.status(404).send(error.message);
   }
-};
+}
 
 
 // // post start

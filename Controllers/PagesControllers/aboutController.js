@@ -28,7 +28,7 @@ const PostAbout = async (req, res, next) => {
     const { error } = aboutValidation(req.body)
     if (error) return res.status(400).send(error.message)
 
-    const getabout = await AboutModel.find().sort({ _id: -1 }).limit(1)
+    const getData = await AboutModel.find().sort({ _id: -1 }).limit(1)
     if (!getData) {
       const postabout = await AboutModel(req.body);
       await postabout.save();
