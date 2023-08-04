@@ -2,7 +2,7 @@ const HomeSettingModel = require('../../Models/PagesModels/homeSettingModel')
 const joi = require('joi')
 // get start
 const homeSettingGet = async (req, res) => {
-  const hellhomeSetting = await HomeSettingModel.find().find().sort({ _id: -1 }).limit(1);
+  const hellhomeSetting = await HomeSettingModel.find().sort({ _id: -1 }).limit(1)
   
   res.status(200).send(hellhomeSetting)
 }
