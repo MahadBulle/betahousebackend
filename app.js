@@ -4,6 +4,7 @@ const cors = require('cors');
 // const { MongoMemoryServer } = require('mongodb-memory-server-core'
 require('dotenv').config();
 
+
 const housesRoutes = require('./routes/housesRoutes')
 const usersRoutes = require('./routes/usersRoutes')
 const himagesRoutes = require('./routes/himagesRoutes')
@@ -13,6 +14,8 @@ const ourClientRoutes = require('./routes/PagesRoutes/ourClientRoute')
 const aboutRoutes = require('./routes/PagesRoutes/aboutRoute')
 const contactRoutes = require('./routes/PagesRoutes/contactRout')
 const servicesRoutes = require('./routes/PagesRoutes/ourServicesRoute')
+const LoginRoute = require ('./routes/LogingRoute')
+const AuthenticateRoute = require('./routes/AuthenticationMiddleware')
 
 
 const app = express()
@@ -44,6 +47,8 @@ app.use('/ourclient', ourClientRoutes)
 app.use('/about', aboutRoutes)
 app.use('/contact', contactRoutes)
 app.use('/services', servicesRoutes)
+app.use('/login',LoginRoute)
+
 
 
   

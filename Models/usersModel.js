@@ -6,6 +6,7 @@ const usersSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    unique: true,
     required: true
   },
   password: {
@@ -15,12 +16,12 @@ const usersSchema = new mongoose.Schema({
 
   status: {
     type: String,
-    required: true,
-    enum: (['Active', 'Pending', 'blocked'])
+    enum: (['Active', 'Pending']),
+    default: 'Active'
   },
   role: {
     type: String,
-    required: true
+    default: 'user'
   }
 
 }, { timestamps: true })

@@ -66,35 +66,36 @@ const userDelete = async (req, res) => {
 // user Delete ended
 
 // login start
-const login = async (req, res) => {
-  try {
-    const { error } = LoginValidation(req.body)
-    if (error) return res.send(error.message)
-    const currentUserData = await UsersModel.findOne({ username: req.body.username })
-    if (!currentUserData) return res.send({ status: 'Error', message: 'invalid username or password' })
+// const login = async (req, res) => {
+//   try {
+//     const { error } = LoginValidation(req.body)
+//     if (error) return res.send(error.message)
+//     const currentUserData = await UsersModel.findOne({ username: req.body.username })
+//     if (!currentUserData) return res.send({ status: 'Error', message: 'invalid username or password' })
 
-    const validatePassword = await bcrypt.compare(
-      req.body.password,
-      currentUserData.password
-    )
-    if (!validatePassword) return res.send({ status: 'Error', message: 'invalid username or password' })
+//     const validatePassword = await bcrypt.compare(
+//       req.body.password,
+//       currentUserData.password
+//     )
+//     if (!validatePassword) return res.send({ status: 'Error', message: 'invalid username or password' })
 
-    const token = jwt.sign({ id: currentUserData._id, username: currentUserData.username }, 'MahadBuulle')
-    res.header('token', token).json({
-      status: 'Success',
-      message: 'successfully logged in',
-      token
-    })
-  } catch (error) {
-    res.send({ status: 'Error', message: error.message })
-  }
-}
+//     const token = jwt.sign({ id: currentUserData._id, username: currentUserData.username }, 'MahadBuulle')
+//     res.header('token', token).json({
+//       status: 'Success',
+//       message: 'successfully logged in',
+//       token
+//     })
+//   } catch (error) {
+//     res.send({ status: 'Error', message: error.message })
+//   }
+// }
 // login ended
 // login validation
 function LoginValidation (userObj) {
   const userVal = joi.object({
-    username: joi.string(),
-    password: joi.string().required()
+    email:joi.string().email({ tlds: { allow: false } }).required(),
+    // username:joi.string().required(),
+    password:joi.string().required(),
 
   })
   return userVal.validate(userObj)
@@ -106,8 +107,8 @@ function usersValidation (usersObj) {
     username: joi.string().required().min(3).max(10),
     email: joi.string().required().email({ tlds: { allow: false } }).required(),
     password: joi.string().required().min(6).max(20),
-    status: joi.string().required(),
-    role: joi.string().required()
+    status: joi.string(),
+    role:joi.string().required(),
 
   })
   return usersVal.validate(usersObj)
@@ -119,4 +120,5 @@ exports.GetUserById = GetUserById
 exports.signup = signup
 exports.userUpdate = userUpdate
 exports.userDelete = userDelete
-exports.login = login
+// exports.login = login
+exports.LoginValidation = LoginValidation

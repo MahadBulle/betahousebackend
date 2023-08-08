@@ -5,19 +5,17 @@ const router = express.Router()
 // const contactController = require('../../Controllers/PagesControllers/contactController')
 // const contactController = require('../../Controllers/PagesControllers/contactController')
 const {GetContact,GetContactById,PostContact,PutContact,DeleteContact} = require('../../Controllers/PagesControllers/contactController')
-// router.get('/',(req,res) => {
+const AuthenticateRoute = require('../AuthenticationMiddleware')
 
-//     res.send("waa uu shaqeenaa hada")
-// })
-router.get('/',GetContact)
+router.get('/',AuthenticateRoute(["SuperAdmin","Admin","CustomerCare"]),GetContact)
 
-router.get('/:id',GetContactById)
+router.get('/:id',AuthenticateRoute(["SuperAdmin","Admin","CustomerCare"]),GetContactById)
 
 router.post('/', PostContact) 
 
-router.put('/:id',PutContact)
+router.put('/:id',AuthenticateRoute(["SuperAdmin","Admin","CustomerCare"]),PutContact)
 
-router.delete('/:id',DeleteContact)
+router.delete('/:id',AuthenticateRoute(["SuperAdmin","Admin","CustomerCare"]),DeleteContact)
 
 
 module.exports = router
