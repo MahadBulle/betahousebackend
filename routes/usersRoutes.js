@@ -5,7 +5,7 @@ const usersController = require('../Controllers/usersController')
 const AuthenticateRoute = require('./AuthenticationMiddleware')
 
 
-router.get('/',AuthenticateRoute(["SuperAdmin","Admin"]), usersController.GetUsers)
+router.get('/', usersController.GetUsers)
 
 router.get('/:id',AuthenticateRoute(["SuperAdmin","Admin"]), usersController.GetUserById)
 
